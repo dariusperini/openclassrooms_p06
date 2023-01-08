@@ -8,7 +8,15 @@ async function getMedias() {
             return res.json();
         })
         .then(function (json) {
-            return json['media'];
+            const  mediaOfPhotographer=[];
+            medias = json['media'];
+            medias.forEach(function(media) {
+                if(media.photographerId==photographer_id) 
+                {
+                    mediaOfPhotographer.push(media);
+                }
+            });
+            return mediaOfPhotographer;
         })
         .catch(function (err) {
             // Une erreur est survenue
@@ -42,15 +50,21 @@ async function getPhotographer() {
 
 
 async function displayData(photographer, medias) {
+    // Photographer's detail
     const photographersHeader = document.querySelector(".photographer_header");
     const contactButton = document.querySelector(".contact_button");
     const photographerDetails = photographerDetailFactory(photographer);
     const userCardDOM = photographerDetails.getUserCardDOM();
     const photographerAvatar = photographerDetails.getUserAvatarDOM();
-
-
     photographersHeader.insertBefore(userCardDOM, contactButton );
     photographersHeader.appendChild(photographerAvatar);
+
+    // Photographer's book
+    const bookSection = document.querySelector(".photobook");
+    medias.forEach(function (media) {
+        mediaElement = mediaFactory(media);
+        bookSection.appendChild(mediaElement.addElement());
+    });
 };
 
 async function init() {

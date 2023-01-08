@@ -25,6 +25,7 @@ function photographerFactory(data) {
         h3.textContent = city + ', ' + country ;
         h3.setAttribute("aria-label", "Ville et pays du photographe");
         txt_tagline.textContent = tagline;
+        txt_tagline.setAttribute("aria-label", "Tag line");
         txt_price.classList.add('price');
         txt_price.textContent = price + '€/jour';
         txt_price.setAttribute("aria-label", "Prix par jour");
