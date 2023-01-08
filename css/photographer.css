@@ -2,10 +2,27 @@
     display: none;
 }
 
-.photograph-header {
+.photographer_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+}
+
+.photographer_header h2 {
+    color: #D3573C;
+    font-size: 36px;
+    margin-bottom: 0;
+}
+
+.photographer_avatar {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .contact_button {

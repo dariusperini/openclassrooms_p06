@@ -4,9 +4,6 @@
         .then(function(res) {
               return res.json();
           })
-          .then(function(value) {
-            return value;
-          })
           .catch(function(err) {
             // Une erreur est survenue
             console.log(err)
