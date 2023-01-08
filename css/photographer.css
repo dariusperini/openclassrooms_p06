@@ -54,10 +54,31 @@
     justify-content: space-between;
 }
 
-.book_photo {
+.photobook article h3 {
+    color: #901C1C;
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.legend {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.likes {
+    text-align: right;
+}
+
+.book_img {
     width:350px;
     height: 300px;
     object-fit: cover;
+}
+
+.book_video {
+    width:350px;
+    height: 300px;
 }
 
 .contact_button {
