@@ -19,6 +19,8 @@ function photographerDetailFactory(data) {
         h3.setAttribute("aria-label", "Ville et pays du photographe");
         txt_tagline.textContent = tagline;
         txt_tagline.setAttribute("aria-label", "Tag line");
+        
+        // Construction de l'article à renvoyer
         article.appendChild(h2);
         article.appendChild(h3);
         article.appendChild(txt_tagline);

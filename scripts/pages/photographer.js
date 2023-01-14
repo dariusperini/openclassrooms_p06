@@ -1,7 +1,7 @@
 let params = (new URL(document.location)).searchParams;
 let photographer_id = params.get('id');
 
-async function getMedias() {
+async function getMedias(sort='popularity') {
     // Recuperation du fichier JSON en utilisant "fetch".
     return fetch('../data/photographers.json')
         .then(function (res) {
@@ -16,6 +16,25 @@ async function getMedias() {
                     mediaOfPhotographer.push(media);
                 }
             });
+
+            //tri: date / likes / price / title
+            switch(sort) {
+                case 'title':
+                mediaOfPhotographer.sort((a, b) => (a.title > b.title ? 1 : -1));
+                break;
+
+                case 'date':
+                mediaOfPhotographer.sort((a, b) => (a.date > b.date ? 1 : -1));
+                break;
+
+                case 'price':
+                mediaOfPhotographer.sort((a, b) => (a.price > b.price ? 1 : -1));
+                break;
+
+                default:
+                    mediaOfPhotographer.sort((a, b) => (a.likes < b.likes ? 1 : -1));
+            }
+
             return mediaOfPhotographer;
         })
         .catch(function (err) {
@@ -40,6 +59,7 @@ async function getPhotographer() {
                     result = element;
                 }
             });
+            
             return result;
         })
         .catch(function (err) {
@@ -71,8 +91,9 @@ async function init() {
     // Récupère les datas des photographes
     let medias;
     let photographer;
-
+    
     medias = await getMedias();
+    console.log(medias);
     photographer = await getPhotographer();
 
     displayData(photographer, medias);

@@ -1,5 +1,6 @@
 #contact_modal {
     display: none;
+    top: 0px;
 }
 
 .photographer_header {
@@ -45,8 +46,19 @@
     object-fit: cover;
 }
 
+.filters {
+    margin: 20px 0 0 100px;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
 .photobook {
-    margin: 100px;
+    margin: 40px 0 0 100px;
     width: 89%;
     flex-wrap: wrap;
     display: flex;
@@ -70,14 +82,19 @@
     text-align: right;
 }
 
+.likes i {
+    padding-left: 10px;
+}
+
 .book_img {
-    width:350px;
+    width: 350px;
     height: 300px;
     object-fit: cover;
+    border-radius: 2%;
 }
 
 .book_video {
-    width:350px;
+    width: 350px;
     height: 300px;
 }
 
@@ -92,6 +109,10 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.contact_button:hover, :focus {
+    background-color: #D3573C;
 }
 
 .modal {
@@ -146,4 +167,9 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+.filers form label {
+    font-size: 18px;
+    font-weight: bold;
 }

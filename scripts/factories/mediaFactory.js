@@ -23,7 +23,9 @@ function mediaFactory(data) {
         const legend = document.createElement('div');
         const imageTitle = document.createElement('h3');
         const likeDisplay = document.createElement('h3');
+        const coeur  = document.createElement( 'i' );
 
+        // Attribution des valeurs
         article.appendChild(img);
         img.setAttribute("alt", title);
         imageTitle.textContent = title;
@@ -32,8 +34,14 @@ function mediaFactory(data) {
         img.classList.add("book_"+mediaType);
         legend.classList.add("legend");
         likeDisplay.classList.add("likes");
+        coeur.classList.add("fa-solid");
+        coeur.classList.add("fa-heart");
+
+        // Construction de l'element à renvoyer
         legend.appendChild(imageTitle);
+        likeDisplay.appendChild(coeur);
         legend.appendChild(likeDisplay);
+        likeDisplay.appendChild(coeur);
         article.appendChild(legend);
 
 
