@@ -3,7 +3,7 @@ let photographer_id = params.get('id');
 let medias;
 let photographer;
 
-async function getMedias(sort='popularity') {
+async function getMedias() {
     // Recuperation du fichier JSON en utilisant "fetch".
     return fetch('../data/photographers.json')
         .then(function (res) {
@@ -53,7 +53,6 @@ async function getPhotographer() {
 }
 
 
-//async function displayData(photographer, medias) {
 async function displayPhotographer(photographer) {
         // Photographer's detail
     const photographersHeader = document.querySelector(".photographer_header");
@@ -63,15 +62,6 @@ async function displayPhotographer(photographer) {
     const photographerAvatar = photographerDetails.getUserAvatarDOM();
     photographersHeader.insertBefore(userCardDOM, contactButton );
     photographersHeader.appendChild(photographerAvatar);
-
-    // Photographer's book
-    /*
-    const bookSection = document.querySelector(".photobook");
-    medias.forEach(function (media) {
-        mediaElement = mediaFactory(media);
-        bookSection.appendChild(mediaElement.addElement());
-    });
-    */
 };
 
 async function displayMedias(medias) {
