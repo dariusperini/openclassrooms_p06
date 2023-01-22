@@ -80,10 +80,13 @@
 
 .likes {
     text-align: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .likes i {
-    padding-left: 10px;
+    padding-left: 5px;
 }
 
 .book_img {

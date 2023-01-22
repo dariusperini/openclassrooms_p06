@@ -1,3 +1,38 @@
+// class MediaFactory {
+//     addELement() {
+//         ///
+
+//         const htmlImageElement = this.createMediaElement();
+        
+//         ///
+//     }
+
+//     createMediaElement() {
+//         throw new Exception('You have to implement this method');
+//     }
+// }
+
+// class PhotoMediaFactory extends MediaFactory {
+//     createMediaElement() {
+//         const img = document.createElement('img');
+//         img.setAttribute("src", imageLink);
+
+//         return img;
+//     }
+// }
+
+// class VideoMediaFactory extends MediaFactory {
+//     createMediaElement() {
+//         const video = document.createElement('video');
+//         video.setAttribute("src", videoLink);
+//         video.controls = "controls";
+
+//         return video;
+//     }
+// }
+
+
+
 function mediaFactory(data) {
     const { id, photographerId, title, image, video, likes, date, price } = data;
 
@@ -23,13 +58,14 @@ function mediaFactory(data) {
         const legend = document.createElement('div');
         const imageTitle = document.createElement('h3');
         const likeDisplay = document.createElement('h3');
+        const likeValue = document.createElement('div');
         const coeur  = document.createElement( 'i' );
 
         // Attribution des valeurs
         article.appendChild(img);
         img.setAttribute("alt", title);
         imageTitle.textContent = title;
-        likeDisplay.textContent = likes;
+        likeValue.textContent = likes;
         imageTitle.setAttribute("aria-label", "Titre du média");
         img.classList.add("book_"+mediaType);
         legend.classList.add("legend");
@@ -40,6 +76,7 @@ function mediaFactory(data) {
         // Construction de l'element à renvoyer
         legend.appendChild(imageTitle);
         likeDisplay.appendChild(coeur);
+        likeDisplay.appendChild(likeValue);
         legend.appendChild(likeDisplay);
         likeDisplay.appendChild(coeur);
         article.appendChild(legend);

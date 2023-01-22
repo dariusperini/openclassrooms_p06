@@ -19,6 +19,9 @@ async function getMedias() {
                 }
             });
 
+            // default sort is by popularity (likes)
+            mediaOfPhotographer.sort((a, b) => (a.likes < b.likes ? 1 : -1));
+
             return mediaOfPhotographer;
         })
         .catch(function (err) {
@@ -69,12 +72,20 @@ async function displayMedias(medias) {
     const bookSection = document.querySelector(".photobook");
     medias.forEach(function (media) {
         mediaElement = mediaFactory(media);
+        // let mediaFactory;
+
+        // if ("video") {
+        //     mediaFactory = new VideoMediaFactory();
+        // } else {
+        //     mediaFactory = new ImageMediaFactory();
+        // }
+
         bookSection.appendChild(mediaElement.addElement());
     });
 };
 
 async function init() {
-    // Récupère les datas des photographes
+    // Récupère les data des photographes
     medias = await getMedias();
     console.log(medias);
     photographer = await getPhotographer();
