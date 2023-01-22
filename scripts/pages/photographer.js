@@ -71,8 +71,8 @@ async function displayMedias(medias) {
     // Photographer's book
     const bookSection = document.querySelector(".photobook");
     medias.forEach(function (media) {
+        let mediaFactory;
         mediaElement = mediaFactory(media);
-        // let mediaFactory;
 
         // if ("video") {
         //     mediaFactory = new VideoMediaFactory();
