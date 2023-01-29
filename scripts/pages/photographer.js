@@ -76,7 +76,6 @@ async function displayMedias(medias) {
 async function init() {
     // Récupère les datas des photographes
     medias = await getMedias();
-    console.log(medias);
     photographer = await getPhotographer();
 
     displayPhotographer(photographer);

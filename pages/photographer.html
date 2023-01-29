@@ -4,6 +4,7 @@
 <head>
   <link href="../css/style.css" rel="stylesheet" type="text/css" />
   <link href="../css/photographer.css" rel="stylesheet" type="text/css" />
+  <link href="../css/lightbox.css" rel="stylesheet" type="text/css" />
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="../assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -12,49 +13,82 @@
 </head>
 
 <body>
-  <header>
-    <a href="../index.html"><img src="../assets/images/logo.png" alt="Fisheye Home Page" class="logo"
-        aria-label="Lien vers homepage" /></a>
-  </header>
-  <main id="main">
-    <div class="photographer_header">
-      <button id='btn-open-modal' class="btn-modal contact_button">Contactez-moi</button>
+  <div id="container">
+    <header>
+      <a href="../index.html"><img src="../assets/images/logo.png" alt="Fisheye Home Page" class="logo"
+          aria-label="Lien vers homepage" /></a>
+    </header>
+    <main id="main">
+      <div class="photographer_header">
+        <button id='btn-open-modal' class="btn-modal contact_button">Contactez-moi</button>
+      </div>
+    </main>
+
+    <section class="filters">
+      <form>
+        <label for="filter-select">Trier par</label>
+        <select name="filters" class="filter-select" onchange="changeFilter()">
+          <option value="popularity">Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Titre</option>
+          <option value="price">Prix</option>
+        </select>
+      </form>
+    </section>
+
+    <section class="photobook">
+
+    </section>
+  </div>
+
+  <div id="lightbox">
+    <div class="lightbox center">
+      <div class="lightbox-content">
+        <div class="prev"></div>
+        <div class="main-media"></div>
+        <div class="close_next">
+          <div class="close"><img id="btn-close-lightbox" src="../assets/icons/close.svg" /></div>
+          <div class="next">></div>
+        </div>
+      </div>
     </div>
-  </main>
-
-  <section class="filters">
-    <form>
-      <label for="filter-select">Trier par</label>
-      <select name="filters" class="filter-select" onchange="changeFilter()">
-        <option value="popularity">Popularité</option>
-        <option value="date">Date</option>
-        <option value="title">Titre</option>
-        <option value="price">Prix</option>
-      </select>
-    </form>
-  </section>
-
-  <section class="photobook">
-
-  </section>
+  </div>
 
   <div id="contact_modal">
-    <div class="modal">
+    <div class="modal center">
       <header>
         <h2>Contactez-moi</h2>
         <img id="btn-close-modal" src="../assets/icons/close.svg" />
+        <div class="photographer_name"></div>
       </header>
-      <form>
-        <div>
-          <label>Prénom</label>
-          <input />
+      <form id="modal-form">
+        <div class="formData">
+          <label for="firstname">Prénom</label><br>
+          <input class="text-control" type="text" id="firstname" name="firstname" /><br>
         </div>
+
+        <div class="formData">
+          <label for="lastname">Nom</label><br>
+          <input class="text-control" type="text" id="lastname" name="lastname" /><br>
+        </div>
+
+        <div class="formData">
+          <label for="email">Email</label><br>
+          <input class="text-control" type="text" id="email" name="email" /><br>
+        </div>
+
+        <div class="formData">
+          <label for="message">Votre message</label><br>
+          <textarea class="text-control" id="message" name="message" cols="80"></textarea>
+        </div>
+
         <button class="contact_button">Envoyer</button>
       </form>
     </div>
   </div>
   <script src="../scripts/pages/photographer.js"></script>
   <script src="../scripts/utils/contactForm.js"></script>
+  <script src="../scripts/utils/lightbox.js"></script>
   <script src="../scripts/utils/filters.js"></script>
   <script src="../scripts/factories/photographerDetailFactory.js"></script>
   <script src="../scripts/factories/mediaFactory.js"></script>

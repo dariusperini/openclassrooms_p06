@@ -7,12 +7,12 @@ function photographerFactory(data) {
 
         // Déclaration des éléments du DOM
         const link = document.createElement('a');
-        const article = document.createElement( 'article' );
-        const img = document.createElement( 'img' );
-        const h2 = document.createElement( 'h2' );
-        const h3 = document.createElement( 'h3' );
-        const txt_tagline  = document.createElement( 'p' );
-        const txt_price  = document.createElement( 'div' );
+        const article = document.createElement('article');
+        const img = document.createElement('img');
+        const h2 = document.createElement('h2');
+        const h3 = document.createElement('h3');
+        const txt_tagline = document.createElement('p');
+        const txt_price = document.createElement('div');
 
         // Attribution des valeurs
         link.href = './pages/photographer.html?id=' + id;
@@ -22,7 +22,7 @@ function photographerFactory(data) {
         img.setAttribute("alt", "Photo de " + name);
         h2.textContent = name;
         h2.setAttribute("aria-label", "Nom du photographe");
-        h3.textContent = city + ', ' + country ;
+        h3.textContent = city + ', ' + country;
         h3.setAttribute("aria-label", "Ville et pays du photographe");
         txt_tagline.textContent = tagline;
         txt_tagline.setAttribute("aria-label", "Tag line");
@@ -38,6 +38,11 @@ function photographerFactory(data) {
         article.appendChild(txt_tagline);
         article.appendChild(txt_price);
 
+        // Nom du photographe dans la maodale
+        const photoGrapherName = document.querySelector(".photographer_name");
+        if (photoGrapherName) {
+            photoGrapherName.textContent = name;
+        }
         return (article);
     }
     return { name, picture, getUserCardDOM }
