@@ -68,8 +68,8 @@ async function displayMedias(medias) {
     // Photographer's book
     const bookSection = document.querySelector(".photobook");
     medias.forEach(function (media) {
-        mediaElement = mediaFactory(media);
-        bookSection.appendChild(mediaElement.addElement());
+        const mediaElement = mediaFactory(media);
+        bookSection.appendChild(mediaElement.dom);
     });
 };
 
@@ -80,6 +80,8 @@ async function init() {
 
     displayPhotographer(photographer);
     displayMedias(medias);
+
+    initLightBox()
 };
 
 init();
