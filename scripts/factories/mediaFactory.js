@@ -1,52 +1,106 @@
-function mediaFactory(data) {
-    const { id, photographerId, title, image, video, likes, date, price } = data;
+// Abstract
+class MediaElement {
 
-    const imageLink = `../assets/images/${photographerId}/${image}`;
-    const videoLink = `../assets/images/${photographerId}/${video}`;
+    constructor({ id, photographerId, title, mediaFilename, likes }) {
+        if (this.constructor == MediaElement)
+            throw new Error("Abstract classes can't be instantiated.");
 
-    function addElement(element) {
-        let mediaType = '';
-        let img;
+        this.id = id;
+        this.photographerId = photographerId;
+        this.title = title;
+        this.mediaFilename = mediaFilename;
+        this.likes = likes;
+    }
 
-        const article = document.createElement('article');
-        if (typeof video === 'undefined') {
-            mediaType = 'img';
-            img = document.createElement('img');
-            img.setAttribute("src", imageLink);
-        }
-        else {
-            mediaType = 'video';
-            img = document.createElement('video');
-            img.setAttribute("src", videoLink);
-            img.controls = "controls";
-        }
+    get type() {
+        throw new Exception('You have to implement this method');
+    }
+
+    get dom() {
+        const articleElement = document.createElement('article');
+        const mediaElement = this.createMediaElement();
         const legend = document.createElement('div');
-        const imageTitle = document.createElement('h3');
+        const mediaTitle = document.createElement('h3');
         const likeDisplay = document.createElement('h3');
         const coeur  = document.createElement( 'i' );
 
         // Attribution des valeurs
-        article.appendChild(img);
-        img.setAttribute("alt", title);
-        imageTitle.textContent = title;
-        likeDisplay.textContent = likes;
-        imageTitle.setAttribute("aria-label", "Titre du média");
-        img.classList.add("book_"+mediaType);
+        articleElement.appendChild(mediaElement);
+        mediaElement.setAttribute("alt", this.title);
+        mediaTitle.textContent = this.title;
+        likeDisplay.textContent = this.likes;
+        mediaTitle.setAttribute("aria-label", "Titre du média");
+        mediaElement.classList.add(`book_${this.type}`);
         legend.classList.add("legend");
         likeDisplay.classList.add("likes");
         coeur.classList.add("fa-solid");
         coeur.classList.add("fa-heart");
 
         // Construction de l'element à renvoyer
-        legend.appendChild(imageTitle);
+        legend.appendChild(mediaTitle);
         likeDisplay.appendChild(coeur);
         legend.appendChild(likeDisplay);
         likeDisplay.appendChild(coeur);
-        article.appendChild(legend);
+        articleElement.appendChild(legend);
 
-
-        return article;
+        return articleElement;
+        ///
     }
 
-    return { addElement }
+    createMediaElement() {
+        throw new Exception('You have to implement this method');
+    }
+}
+
+class PhotoMediaElement extends MediaElement {
+    get type() {
+        return 'img';
+    }
+
+    createMediaElement() {
+        const imagePath = `../assets/images/${this.photographerId}/${this.mediaFilename}`;
+        const imgElement = document.createElement('img');
+        imgElement.setAttribute("src", imagePath);
+
+        return imgElement;
+    }
+}
+
+class VideoMediaElement extends MediaElement {
+    get type() {
+        return 'video';
+    }
+
+    createMediaElement() {
+        const videoPath = `../assets/images/${this.photographerId}/${this.mediaFilename}`;
+        const videoElement = document.createElement('video');
+        videoElement.setAttribute("src", videoPath);
+        videoElement.controls = "controls";
+
+        return videoElement;
+    }
+}
+
+function mediaFactory(data) {
+    const { id, photographerId, title, image, video, likes, date, price } = data;
+
+    const isVideo = !!video;
+
+    return isVideo ? new VideoMediaElement({
+        id,
+        photographerId,
+        title,
+        likes,
+        date,
+        price,
+        mediaFilename: video
+    }) : new PhotoMediaElement({
+        id,
+        photographerId,
+        title,
+        likes,
+        date,
+        price,
+        mediaFilename: image
+    });
 }

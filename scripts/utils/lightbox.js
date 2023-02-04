@@ -1,14 +1,16 @@
-const bookImg = document.querySelectorAll(".book_img");
+let bookImageElementList;
+let currentIndex = 0;
 
-console.log(bookImg);
+function initLightBox() {
+    bookImageElementList = document.querySelectorAll(".book_img");
+    bookImageElementList.forEach(img => img.addEventListener('click', displayLightBox));
+}
 
-bookImg.forEach(elem => elem.addEventListener("click", event => {
-    displayLightBox(event.target);
-}));
-
-function displayLightBox(media) {
+function displayLightBox({ target }) {
+    console.log(target);
+    currentIndex = [...bookImageElementList].indexOf(target);
     const lightbox = document.getElementById('lightbox');
-    var container = document.getElementById('container')
+    const container = document.getElementById('container');
 
     lightbox.style.display = "block";
     container.className = "is-blurred";
