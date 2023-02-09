@@ -2,20 +2,21 @@ const buttonOpen = document.getElementById("btn-open-modal");
 const buttonClose = document.getElementById("btn-close-modal");
 const form = document.getElementById("modal-form");
 
-buttonOpen.addEventListener("click", displayModal);
-buttonClose.addEventListener("click", closeModal);
+function initModal() {
+    buttonOpen.addEventListener("click", displayModal);
+    buttonClose.addEventListener("click", closeModal);
 
-form.addEventListener("submit", event => {
-    event.preventDefault();
-    sendForm()
-  });
-
+    form.addEventListener("submit", event => {
+        event.preventDefault();
+        sendForm()
+    });
+}
 
 function displayModal() {
     const modal = document.getElementById("contact_modal");
     var container = document.getElementById("container")
 
-	modal.style.display = "block";
+    modal.style.display = "block";
     container.className = "is-blurred";
 }
 
@@ -27,8 +28,7 @@ function closeModal() {
     container.className = "";
 }
 
-function sendForm()
-{
+function sendForm() {
     let formData = new FormData(form);
     console.log(Object.fromEntries(formData));
     form.reset();

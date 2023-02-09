@@ -81,7 +81,9 @@ async function init() {
     displayPhotographer(photographer);
     displayMedias(medias);
 
-    initLightBox()
+    initModal();
+    initFilters();
+    initLightBox();
 };
 
 init();

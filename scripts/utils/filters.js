@@ -1,6 +1,9 @@
 const filterSelect = document.querySelector(".filter-select");
 
-//filterSelect.addEventListener("change", changeFilter());
+
+function initFilters() {
+    filterSelect.addEventListener("change", changeFilter());
+}
 
 function changeFilter() {
     console.log('filter changed');
@@ -18,18 +21,18 @@ function changeFilter() {
 function applyFilter(filter) {
     console.log('applying filter ' + filter);
     //tri: date / likes / price / title
-    switch(filter) {
+    switch (filter) {
         case 'title':
             medias.sort((a, b) => (a.title > b.title ? 1 : -1));
-        break;
+            break;
 
         case 'date':
             medias.sort((a, b) => (a.date > b.date ? 1 : -1));
-        break;
+            break;
 
         case 'price':
             medias.sort((a, b) => (a.price > b.price ? 1 : -1));
-        break;
+            break;
 
         default:
             medias.sort((a, b) => (a.likes < b.likes ? 1 : -1));
