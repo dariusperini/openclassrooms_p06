@@ -75,7 +75,6 @@ class VideoMediaElement extends MediaElement {
         const videoPath = `../assets/images/${this.photographerId}/${this.mediaFilename}`;
         const videoElement = document.createElement('video');
         videoElement.setAttribute("src", videoPath);
-        videoElement.controls = "controls";
 
         return videoElement;
     }

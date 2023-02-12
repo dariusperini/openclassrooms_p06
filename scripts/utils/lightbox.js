@@ -1,3 +1,5 @@
+const lightbox = document.querySelector('.lightbox');
+const container = document.getElementById('container');
 let bookImageElementList;
 let currentIndex = 0;
 
@@ -9,8 +11,6 @@ function initLightBox() {
 function displayLightBox({ target }) {
     currentIndex = [...bookImageElementList].indexOf(target);
     console.log(medias[currentIndex].image);
-    const lightbox = document.getElementById('lightbox');
-    const container = document.getElementById('container');
     const content = document.querySelector('.main-media');
 
     const baseLink = "../assets/images/" + photographer_id + "/";
@@ -19,6 +19,6 @@ function displayLightBox({ target }) {
     img.setAttribute("src", baseLink + medias[currentIndex].image);
     content.appendChild(img);
 
-    lightbox.style.display = "block";
+    lightbox.classList.add('lightbox-show');
     container.className = "is-blurred";
 }

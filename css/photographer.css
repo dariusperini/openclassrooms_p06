@@ -96,6 +96,8 @@
 .book_video {
     width: 350px;
     height: 300px;
+    object-fit: cover;
+    border-radius: 2%;
 }
 
 .contact_button {
